@@ -9,3 +9,6 @@
 
 # XML
 *.xml
+
+# IML
+*.iml
