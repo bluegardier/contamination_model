@@ -20,8 +20,8 @@ We are using the following Data Source:
 To run this project locally:
 ```
 git clone https://github.com/bluegardier/contamination_model.git
-cd airbnb_prediction
-pip install .
+cd contamination_model
+pip install -r requirements && pip install .
 ``` 
 
 ### Repository Structure
