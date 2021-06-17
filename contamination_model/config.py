@@ -1,14 +1,11 @@
 from os import path
-import contamination_model
 
 # Paths
-base_path = path.dirname(path.dirname(contamination_model.__file__))
+base_path = path.abspath("../")
 workspace_path = path.join(base_path, 'workspace')
 data_path = path.join(workspace_path, 'data')
+raw_data_path = path.join(data_path, 'raw')
 models_path = path.join(workspace_path, 'models')
-
-print(contamination_model.__file__)
-
 
 to_drop_ld = [
     "taxi__V1",
