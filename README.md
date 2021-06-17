@@ -1,3 +1,5 @@
+https://github.com/bluegardier/contamination_model/actions/workflows/github-ci.yml/badge.svg
+
 # Contamination Rate Prediction
 Disclaimer: This project is in a **WIP** state.
 
