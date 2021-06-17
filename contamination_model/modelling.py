@@ -5,19 +5,32 @@ from contamination_model import config
 from pycaret.utils import check_metric
 
 
-def evaluation_metrics(df: pd.DataFrame, export_metrics: bool = False) -> None:
+def evaluation_metrics(df: pd.DataFrame, target: str, export_metrics: bool = False) -> None:
+    """
+
+    Parameters
+    ----------
+    df :  Validation dataframe.
+    target : The dataframe's target variable.
+    export_metrics : If true, generates and export performance metrics.
+
+    Returns
+    -------
+
+    """
+
     metric_values = []
     print('Model Evaluation Performance:')
 
     for metric in config.metric_list:
-        value = round(check_metric(df['price'], df['Label'], metric=metric), 2)
+        value = round(check_metric(df[target], df['Label'], metric=metric), 2)
         metric_values.append(value)
 
     evaluation = dict(zip(config.metric_list, metric_values))
     print(evaluation)
 
     if export_metrics:
-        with open('../data/model/evaluation.json', 'w') as file:
+        with open(config.models_path + "/evaluation.json", "w") as file:
             json.dump(evaluation, file)
 
 
@@ -43,8 +56,10 @@ class RegressorTrainer:
         Starts pycaret environment.
         Returns
         -------
+        None
 
         """
+        print("Setting Up PyCaret Session for Machine Learning Experiments")
         pcr.setup(
             data=self.df,
             target=self.target,
@@ -56,7 +71,7 @@ class RegressorTrainer:
             verbose=False
         )
 
-    def train_model(self):
+    def train_model(self, model: str = "ridge"):
         """
         Train and optimize model.
         Returns
@@ -64,11 +79,16 @@ class RegressorTrainer:
         Final model.
         """
 
-        print('Training Ridge Model')
-        self.model = pcr.create_model('ridge',
-                                    verbose=False)
+        print("Training Ridge Model")
+        self.model = pcr.create_model(model,
+                                      verbose=False)
+        print("Training Finished")
 
         self.metrics = pcr.pull()
+        cross_valid_train_metrics = self.metrics.loc["Mean"]
+
+        print("Model's Metrics:")
+        print(cross_valid_train_metrics)
 
     def finalize_model(self):
         """
@@ -84,19 +104,19 @@ class RegressorTrainer:
         """
         pcr.finalize_model(self.model)
 
-    def save_model(self, path: str):
+    def save_model(self, path: str, model_name: str):
         """
         Saves model to path.
         Parameters
         ----------
         path : Path to save model.
-
+        model_name: Model Name.
         Returns
         -------
         None
         """
 
-        pcr.save_model(self.model, path)
+        pcr.save_model(self.model, path + model_name)
 
     def load_model(self, path: str):
         """
@@ -112,23 +132,26 @@ class RegressorTrainer:
 
         self.model = pcr.load_model(path)
 
-    def predict_model(self, data: pd.DataFrame, export_metrics: bool = False):
+    def predict_model(self, data: pd.DataFrame, target: str = None, export_metrics: bool = False):
         """
         Make predictions with unseen data.
         Parameters
         ----------
         data : The new and unseen data for predictions.
-        export_metrics : Checks if model performance metrics are exported.
+        target: Target variable for validation evaluation.
+        export_metrics : Checks whether model performance metrics are exported. Validation datasets Only.
 
         Returns
         -------
+        pd.DataFrame
 
         """
 
-        self.predict = pcr.predict_model(estimator=self.model, data=data)
-        evaluation_metrics(self.predict, export_metrics)
+        predict = pcr.predict_model(estimator=self.model, data=data)
+        if export_metrics:
+            evaluation_metrics(predict, target, export_metrics)
 
-        return self.predict
+        return predict
 
     @property
     def get_model(self):
