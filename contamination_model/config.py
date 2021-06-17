@@ -49,5 +49,13 @@ binary_variables = [
     "trabalha",
     "pratica_esportes"
 ]
+metric_list = [
+    "MAE",
+    "MSE",
+    "RMSE",
+    "R2",
+    "RMSLE",
+    "MAPE",
+]
 
 median_fill_variables = ["IMC", "idade"]
