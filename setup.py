@@ -1,13 +1,10 @@
 from setuptools import setup, find_packages
-import os
-from dotenv import load_dotenv
-
-load_dotenv()
+from contamination_model import config
 
 # Model package name
 NAME = "ridge_regression"
 # Current Version
-VERSION = os.getenv("APP_VERSION", "latest")
+VERSION = config.VERSION
 
 # Dependecies for the package
 with open("requirements.txt") as r:

@@ -1,5 +1,7 @@
 from os import path
 
+VERSION = "1.0.0"
+
 # Paths
 base_path = path.abspath("../")
 workspace_path = path.join(base_path, 'workspace')
