@@ -21,7 +21,7 @@ To run this project locally:
 ```
 git clone https://github.com/bluegardier/contamination_model.git
 cd contamination_model
-pip install -r requirements && pip install .
+pip install -r requirements.txt && pip install .
 ``` 
 
 ### Repository Structure
