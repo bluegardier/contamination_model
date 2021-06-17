@@ -35,7 +35,7 @@ Columns Input - conexoes_espec:
 
 | Column | Type | Description |
 |--------|------|-------------|
-|V1|int|The contamined person ID|
+|V1|int|The contaminated person ID|
 |V2|int|The new infected person ID by V1|
 |grau|str|How V1 and V2 are connected|
 |proximidade|str|How close V1 and V2 are|
