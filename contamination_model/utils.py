@@ -2,7 +2,6 @@ import os
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
-from contamination_model import config
 
 
 def plot_configuration(x: float = 11.7, y: float = 8.27) -> None:
