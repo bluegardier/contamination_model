@@ -12,8 +12,8 @@ using best practices from traditional software.
 ### Data Dependencies
 We are using the following Data Source:
 
-| Source | Description | Year |
-|--------|-------------|------|
+| Source | Description |
+|--------|-------------|
 |Sintetic data for Data Science/Machine Learning practices.|Data containing info about fictional individuals like age, IMC and how they connect with each other. |XXXX|
 
 
