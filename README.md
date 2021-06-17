@@ -24,8 +24,12 @@ pip install .
 
 ### Repository Structure
 - `contamination_model`: Project modules.
-- `app`: API configuration for requests. Uses FastAPI.
 - `workspace`: Project's data containing both raw and clean data for modelling and the model's binary.
-- `notebooks`: Jupyter Notebooks containing both feature engineering proccess and the model stage.
 - `requirements.txt`: contains python dependencies to reproduce the experiments.
 
+### Running the Project
+- `python main.py --help`: Shows usage information.
+- `python main.py features`: Generate features
+- `python main.py deploy_model`: Deploy model
+- `python main.py predict_model`: Predicts model
+- `python main.py run`: Run all model pipeline steps sequentially
