@@ -1,6 +1,8 @@
+import os
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
+from contamination_model import config
 
 
 def plot_configuration(x: float = 11.7, y: float = 8.27) -> None:
@@ -36,3 +38,20 @@ def plotting_categories(df: pd.DataFrame, column: str) -> None:
         series_to_plot = df[df[column] == category]['prob_V1_V2']
         sns.distplot(series_to_plot, hist=False, label=category)
 
+
+def create_directories(directories_list: list) -> None:
+    """
+    Creates possible missing directories for model pipeline.
+    Parameters
+    ----------
+    directories_list : List of path directories to be created.
+
+    Returns
+    -------
+
+    """
+    for directory in directories_list:
+        try:
+            os.mkdir(directory)
+        except FileExistsError:
+            pass

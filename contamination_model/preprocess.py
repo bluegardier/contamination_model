@@ -1,7 +1,7 @@
 import numpy as np
 import pandas as pd
 from typing import Tuple
-from contamination_model import config
+from contamination_model import config, utils
 
 
 def create_target_dataframe(
@@ -356,6 +356,7 @@ def preprocess_data(
     -------
     pd.DataFrame
     """
+    utils.create_directories([config.models_path, config.processed_data_path])
 
     df = refactor_counting_missing_variables(
         df, ["qt_filhos"], "filhos")
