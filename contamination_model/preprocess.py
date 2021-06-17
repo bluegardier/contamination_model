@@ -5,7 +5,7 @@ from contamination_model import config
 
 
 def create_target_dataframe(
-    df_target: pd.DataFrame, df_list: list
+        df_target: pd.DataFrame, df_list: list
 ) -> pd.DataFrame:
     """
     Creates the model dataframe, merging with the previously
@@ -102,13 +102,13 @@ def rename_category(df: pd.DataFrame, sufix: str) -> pd.DataFrame:
         column_values = df[column].unique()
 
         for values in column_values:
-            df[column] = df[column].replace(values, values+sufix)
+            df[column] = df[column].replace(values, values + sufix)
 
     return df
 
 
 def refactor_binary_missing_variables(
-    df: pd.DataFrame, variable_list: list
+        df: pd.DataFrame, variable_list: list
 ) -> pd.DataFrame:
     """
     Renames variable's categories instead of using int numbers.
@@ -145,7 +145,7 @@ def refactor_binary_missing_variables(
 
 
 def refactor_counting_missing_variables(
-    df: pd.DataFrame, variable_list: list, category_name: str
+        df: pd.DataFrame, variable_list: list, category_name: str
 ) -> pd.DataFrame:
     """
     Refactor counting variables to category.
@@ -181,7 +181,7 @@ def refactor_counting_missing_variables(
 
 
 def filling_missings(
-    df: pd.DataFrame, variable_list: list, fill_method: str = "mode"
+        df: pd.DataFrame, variable_list: list, fill_method: str = "mode"
 ) -> pd.DataFrame:
     """
     Fill missing values for a number of categorical variables
@@ -247,15 +247,15 @@ def create_status_imc_variable(df: pd.DataFrame) -> np.ndarray:
                                                      (df["IMC"] < 40),
                                                      "obesidade_II",
                                                      np.where((
-                                                         df["IMC"] >= 40),
+                                                             df["IMC"] >= 40),
                                                          "obsidade_III",
                                                          "sem_info_imc"
+                                                     )
+                                                     )
                                             )
                                    )
                           )
                  )
-        )
-        )
     )
     return imc_categories
 
@@ -281,39 +281,39 @@ def create_faixa_etaria_variable(df: pd.DataFrame) -> np.ndarray:
                  (df["idade"] < 25),
                  "18_24_anos",
                  np.where((
-                     df["idade"] >= 25) &
-            (df["idade"] < 35),
-            "25_34_anos",
-            np.where((
-                df["idade"] >= 35) &
-                     (df["idade"] < 45),
-                     "35_44_anos",
-                     np.where((
-                         df["idade"] >= 45) &
-                (df["idade"] < 55),
-                "45_54_anos",
-                np.where((
-                    df["idade"] >= 55) &
-                         (df["idade"] < 65),
-                         "55_64_anos",
-                         np.where((
-                             df["idade"] >= 65),
-                    "maior_65",
-                    "none")
-                     )
-            )
+                                  df["idade"] >= 25) &
+                          (df["idade"] < 35),
+                          "25_34_anos",
+                          np.where((
+                                           df["idade"] >= 35) &
+                                   (df["idade"] < 45),
+                                   "35_44_anos",
+                                   np.where((
+                                                    df["idade"] >= 45) &
+                                            (df["idade"] < 55),
+                                            "45_54_anos",
+                                            np.where((
+                                                             df["idade"] >= 55) &
+                                                     (df["idade"] < 65),
+                                                     "55_64_anos",
+                                                     np.where((
+                                                             df["idade"] >= 65),
+                                                         "maior_65",
+                                                         "none")
+                                                     )
+                                            )
+                                   )
+                          )
                  )
-        )
-        )
     )
 
     return faixa_etaria
 
 
 def preprocess_predict_data(
-    df_target: pd.DataFrame,
-    df_v1: pd.DataFrame,
-    df_v2: pd.DataFrame
+        df_target: pd.DataFrame,
+        df_v1: pd.DataFrame,
+        df_v2: pd.DataFrame
 ) -> pd.DataFrame:
     """
     Creates the dataframe for target prediction.
@@ -340,7 +340,7 @@ def preprocess_predict_data(
 
 
 def preprocess_data(
-    df: pd.DataFrame, df_target: pd.DataFrame
+        df: pd.DataFrame, df_target: pd.DataFrame
 ) -> Tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame]:
     """
     Compiles all methods to create the model's dataframe.
