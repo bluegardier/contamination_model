@@ -5,7 +5,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 # Model package name
-NAME = "bagged_lightgbm"
+NAME = "ridge_regression"
 # Current Version
 VERSION = os.getenv("APP_VERSION", "latest")
 

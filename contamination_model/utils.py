@@ -1,4 +1,3 @@
-import numpy as np
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
@@ -36,3 +35,4 @@ def plotting_categories(df: pd.DataFrame, column: str) -> None:
     for category in categories:
         series_to_plot = df[df[column] == category]['prob_V1_V2']
         sns.distplot(series_to_plot, hist=False, label=category)
+
