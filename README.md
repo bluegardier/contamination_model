@@ -1,3 +1,5 @@
+![Passing Status](https://github.com/bluegardier/contamination_model/actions/workflows/github-ci.yml/badge.svg)
+
 # Contamination Rate Prediction
 Disclaimer: This project is in a **WIP** state.
 
@@ -44,8 +46,8 @@ Columns Input - conexoes_espec:
 To run this project locally:
 ```
 git clone https://github.com/bluegardier/contamination_model.git
-cd airbnb_prediction
-pip install .
+cd contamination_model
+pip install -r requirements.txt && pip install .
 ``` 
 
 ### Repository Structure
