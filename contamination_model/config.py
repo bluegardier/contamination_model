@@ -4,8 +4,15 @@ from os import path
 base_path = path.abspath("../")
 workspace_path = path.join(base_path, 'workspace')
 data_path = path.join(workspace_path, 'data')
+models_path = path.join(workspace_path, 'model')
 raw_data_path = path.join(data_path, 'raw')
-models_path = path.join(workspace_path, 'models')
+processed_data_path = path.join(data_path, 'processed')
+
+
+DF_PATH = raw_data_path + "/individuos_espec.csv"
+DF_TARGET_PATH = raw_data_path + "/conexoes_espec.csv"
+DF_TRAIN_PATH = processed_data_path + "/df_train.pickle"
+DF_PREDICT_PATH = processed_data_path + "/df_predict.pickle"
 
 to_drop_ld = [
     "taxi__V1",
